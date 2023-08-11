@@ -1,0 +1,22 @@
+server:
+  port: 20001
+spring:
+  application:
+    name: demo-auth
+  cloud:
+    nacos:
+      # 注册中心
+      discovery:
+        server-addr: localhost:8899
+      # 配置中心
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yaml
+        shared-configs[0]:
+          data-id: demo-common.yaml
+          refresh: true
+  main:
+    allow-bean-definition-overriding: true
+logging:
+  level:
+    spring.: DEBUG

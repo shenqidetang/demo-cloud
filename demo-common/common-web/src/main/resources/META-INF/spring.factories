@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.tang.common.web.config.FeignConfig,\
+  com.tang.common.web.exception.GlobalExceptionHandler,\
+  com.tang.common.web.sentinel.DefaultBlockExceptionHandler,\
+  com.tang.common.web.sentinel.RequestOriginParserDefinition

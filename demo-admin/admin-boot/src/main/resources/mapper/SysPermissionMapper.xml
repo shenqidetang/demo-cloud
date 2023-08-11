@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tang.demo.admin.mapper.SysPermissionMapper">
+
+    <resultMap id="sysPermission" type="com.tang.demo.admin.domain.SysPermission">
+        <result column="url_perm" property="urlPerm"/>
+        <collection  property="roles" ofType="java.lang.String">
+            <result  column="code"/>
+        </collection>
+<!--        <association property=""> 对象-->
+<!--            &lt;!&ndash;映射card属性&ndash;&gt;-->
+<!--            <id column="cid" property="cid"></id>-->
+<!--            <result column="address" property="address"></result>-->
+<!--        </association>-->
+    </resultMap>
+
+    <select id="listPermRoles" resultMap="sysPermission">
+        SELECT url_perm,code FROM sys_permission p,sys_role r,sys_role_permission rp   where p.id=rp.permission_id and r.id=rp.role_id
+    </select>
+
+    <select id="listUserCodes" resultType="java.lang.String">
+        SELECT code FROM sys_user_role ur,sys_role r where ur.role_id=r.id and ur.user_id=#{userId}
+    </select>
+</mapper>
